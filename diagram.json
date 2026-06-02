@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard-half", "id": "bb1", "top": 45, "left": 214, "attrs": {} },
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 67.8, "left": -135, "attrs": {} },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": -123.3,
+      "left": -90.5,
+      "attrs": { "distance": "2" }
+    },
+    { "type": "wokwi-lcd1602", "id": "lcd1", "top": -159.77, "left": 208, "attrs": {} }
+  ],
+  "connections": [
+    [ "ultrasonic1:TRIG", "uno:2", "green", [ "v9.6", "h-0.4" ] ],
+    [ "ultrasonic1:ECHO", "uno:3", "purple", [ "v19.2", "h95.2" ] ],
+    [ "uno:5V", "bb1:bp.1", "red", [ "v57.5", "h167", "v-86.4" ] ],
+    [ "uno:GND.2", "bb1:bn.1", "black", [ "v86.3", "h215.1", "v-9.6" ] ],
+    [ "ultrasonic1:VCC", "bb1:bp.5", "red", [ "v67.2", "h-153.6", "v364.8", "h480" ] ],
+    [
+      "ultrasonic1:GND",
+      "bb1:bn.3",
+      "black",
+      [ "v86.4", "h-202.8", "v374.4", "h460.8", "v-192" ]
+    ],
+    [ "bb1:bp.25", "bb1:tp.25", "red", [ "v0" ] ],
+    [ "bb1:bn.24", "bb1:tn.24", "black", [ "v0" ] ],
+    [ "lcd1:VSS", "bb1:tn.1", "black", [ "v0" ] ],
+    [ "lcd1:VDD", "bb1:tp.1", "red", [ "v0" ] ],
+    [ "lcd1:A", "bb1:tp.12", "red", [ "v0" ] ],
+    [ "lcd1:K", "bb1:tn.13", "black", [ "v0" ] ],
+    [ "lcd1:V0", "bb1:tn.2", "black", [ "v0" ] ],
+    [ "lcd1:RS", "uno:13", "green", [ "v38.4", "h-191.7" ] ],
+    [ "lcd1:RW", "bb1:tn.4", "black", [ "v0" ] ],
+    [ "lcd1:E", "uno:12", "green", [ "v48", "h-288" ] ],
+    [ "lcd1:D4", "uno:11", "green", [ "v67.2", "h-307.2", "v9.6" ] ],
+    [ "lcd1:D5", "uno:10", "green", [ "v48", "h-326.3", "v9.6" ] ],
+    [ "lcd1:D6", "uno:9", "green", [ "v57.6", "h-326.2", "v19.2" ] ],
+    [ "lcd1:D7", "uno:8", "green", [ "v38.4", "h-326.1", "v9.6" ] ]
+  ],
+  "dependencies": {}
+}
