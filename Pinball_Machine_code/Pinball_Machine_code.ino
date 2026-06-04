@@ -7,6 +7,7 @@ float distance = 0;
 
 int score = 0;
 int game = 0;
+int countdown = 31;
 
 #include <Servo.h>
 Servo servo1;
@@ -14,11 +15,11 @@ Servo servo1;
 
 void setup() {
 
-  Serial.begin (9600);
+  Serial.begin(9600);
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
 
-  lcd.begin(16,2);
+  lcd.begin(16, 2);
   lcd.clear();
 
   pinMode(7, INPUT_PULLUP);
@@ -32,23 +33,47 @@ void loop() {
   distance = getDistance();
   Serial.print(distance);
   Serial.println("in");
-  if (distance <= 5) {
-    score += 1;
-    ball();
+  if (game == 1) {
+    if (distance <= 5) {
+      score += 1;
+      ball();
+      delay(1000);
+    }
+
+    lcd.setCursor(4, 1);
+    lcd.print("Score: ");
+    lcd.print(score);
+
+    countdown -= 1;
+    lcd.setCursor(7, 0);
+    lcd.print(countdown);
+    lcd.print(" ");
+    
     delay(1000);
   }
 
-  lcd.setCursor(7, 0);
-  lcd.print(score);
-  lcd.setCursor(7, 1);
-  lcd.print(game);
-
-  if(digitalRead(7) == LOW) {
-    game = 1;
+  if (countdown == 0) {
+      game = 0;
   }
-  if(digitalRead(6) == LOW) {
+
+  if (digitalRead(7) == LOW) {
+      game = 1;
+    }
+  if (digitalRead(6) == LOW) {
     game = 0;
   }
+
+  if (game == 0) {
+    lcd.clear();
+    lcd.setCursor(2,0);
+    lcd.print("Final Score:");
+    lcd.setCursor(7, 1);
+    lcd.print(score);
+    delay(5000);
+    score = 0;
+    countdown = 31;
+    lcd.clear();
+  } 
 }
 
 void ball() {
@@ -56,10 +81,11 @@ void ball() {
   delay(500);
   servo1.write(0);
   delay(500);
+  countdown = 31;
+  delay(1000);
 }
 
-float getDistance ()
-{
+float getDistance() {
   float echoTime;
   float calculatedDistance;
   digitalWrite(trigPin, HIGH);
