@@ -28,7 +28,8 @@
       "left": 454.7,
       "rotate": 90,
       "attrs": { "color": "red", "xray": "1" }
-    }
+    },
+    { "type": "wokwi-servo", "id": "servo1", "top": -50, "left": 633.6, "attrs": {} }
   ],
   "connections": [
     [ "ultrasonic1:TRIG", "uno:2", "green", [ "v9.6", "h-0.4" ] ],
@@ -59,7 +60,10 @@
     [ "btn1:1.r", "uno:7", "green", [ "v29", "h-278.4", "v-326.4", "h-105.6" ] ],
     [ "btn2:1.r", "uno:6", "green", [ "v96.2", "h-316.8", "v-403.2", "h-115.2" ] ],
     [ "btn1:2.l", "bb1:bn.16", "black", [ "v0" ] ],
-    [ "btn2:2.l", "bb1:bn.21", "black", [ "v-48", "h-9.8" ] ]
+    [ "btn2:2.l", "bb1:bn.21", "black", [ "v-48", "h-9.8" ] ],
+    [ "servo1:GND", "bb1:tn.23", "black", [ "h-144" ] ],
+    [ "servo1:V+", "bb1:tp.16", "red", [ "h0" ] ],
+    [ "servo1:PWM", "uno:4", "green", [ "h0" ] ]
   ],
   "dependencies": {}
 }
