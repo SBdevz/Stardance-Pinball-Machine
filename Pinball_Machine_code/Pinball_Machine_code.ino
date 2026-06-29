@@ -9,8 +9,13 @@ int score = 0;
 int game = 0;
 int countdown = 31;
 
+bool played = 0;
+
 #include <Servo.h>
 Servo servo1;
+
+unsigned long CountdownTime = 0;
+unsigned long SensorTime = 0;
 
 
 void setup() {
@@ -30,40 +35,53 @@ void setup() {
 }
 
 void loop() {
-  distance = getDistance();
+
+  unsigned long currentTime = millis();
+
+  if (currentTime - SensorTime >= 50) {
+    SensorTime = currentTime;
+    distance = getDistance();
+  }
+
   Serial.print(distance);
   Serial.println("in");
   if (game == 1) {
-    if (distance <= 5) {
+    if ( distance > 0 && distance <= 5) {
       score += 1;
       ball();
-      delay(1000);
     }
 
     lcd.setCursor(4, 1);
     lcd.print("Score: ");
     lcd.print(score);
 
-    countdown -= 1;
-    lcd.setCursor(7, 0);
-    lcd.print(countdown);
-    lcd.print(" ");
-    
-    delay(1000);
+    if (currentTime - CountdownTime >= 1000) {
+      CountdownTime = currentTime;
+      countdown -= 1;
+      lcd.setCursor(7, 0);
+      lcd.print(countdown);
+      lcd.print(" ");
+    }
+
   }
 
   if (countdown == 0) {
       game = 0;
   }
 
-  if (digitalRead(7) == LOW) {
+  if (digitalRead(7) == LOW && game == 0 && played == 0) {
       game = 1;
+      played = 1;
+      CountdownTime = millis();
+      SensorTime = millis();
+      ball();
     }
   if (digitalRead(6) == LOW) {
     game = 0;
   }
 
-  if (game == 0) {
+  if (game == 0 && played == 1) {
+    played = 0;
     lcd.clear();
     lcd.setCursor(2,0);
     lcd.print("Final Score:");
@@ -77,9 +95,9 @@ void loop() {
 }
 
 void ball() {
-  servo1.write(90);
+  servo1.write(180);
   delay(500);
-  servo1.write(0);
+  servo1.write(75);
   delay(500);
   countdown = 31;
   delay(1000);
