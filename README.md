@@ -2,7 +2,7 @@
 An interactive, fun, space themed Pinball Machine where you score "planets" into stars! <br>
 <br>
 
-[![Watch the video](https://youtube.com)](https://youtu.be/-E2J3hrBuoE)
+<img width="4434" height="2630" alt="Image" src="https://github.com/user-attachments/assets/96c2fb7b-06d9-4c9f-945c-a88244fcc88e" />
 
 -------------------------------------------------------------------------------------------------------------------------------<br>
 <br>
