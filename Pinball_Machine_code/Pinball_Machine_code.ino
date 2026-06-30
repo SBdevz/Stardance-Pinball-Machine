@@ -36,7 +36,7 @@ void setup() {
 
 void loop() {
 
-  unsigned long currentTime = millis();
+  unsigned long currentTime = millis();  //Half a second delay to check for scored balls so multiple balls dont get released
 
   if (currentTime - SensorTime >= 50) {
     SensorTime = currentTime;
@@ -51,11 +51,11 @@ void loop() {
       ball();
     }
 
-    lcd.setCursor(4, 1);
+    lcd.setCursor(4, 1);  //Display the score
     lcd.print("Score: ");
     lcd.print(score);
 
-    if (currentTime - CountdownTime >= 1000) {
+    if (currentTime - CountdownTime >= 1000) {  //Decreases the countdown every second without pausing the whole program
       CountdownTime = currentTime;
       countdown -= 1;
       lcd.setCursor(7, 0);
@@ -65,22 +65,22 @@ void loop() {
 
   }
 
-  if (countdown == 0) {
+  if (countdown == 0) {  //When the countdown ends, end the game
       game = 0;
   }
 
-  if (digitalRead(7) == LOW && game == 0 && played == 0) {
+  if (digitalRead(7) == LOW && game == 0 && played == 0) {  //Button to start the game
       game = 1;
       played = 1;
       CountdownTime = millis();
       SensorTime = millis();
       ball();
     }
-  if (digitalRead(6) == LOW) {
+  if (digitalRead(6) == LOW) {  //Button to end the game
     game = 0;
   }
 
-  if (game == 0 && played == 1) {
+  if (game == 0 && played == 1) {  //Final score displayed after the game ends
     played = 0;
     lcd.clear();
     lcd.setCursor(2,0);
@@ -94,7 +94,7 @@ void loop() {
   } 
 }
 
-void ball() {
+void ball() {  //release a ball
   servo1.write(180);
   delay(500);
   servo1.write(75);
