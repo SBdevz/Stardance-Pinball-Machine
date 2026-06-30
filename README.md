@@ -2,11 +2,11 @@
 An interactive, fun, space themed Pinball Machine where you score "planets" into stars! <br>
 <br>
 
-https://github.com/user-attachments/assets/788dfeb9-6665-4c7f-9b4d-72d302205229
+[![Watch the video](https://youtube.com)](https://youtu.be/-E2J3hrBuoE)
 
 -------------------------------------------------------------------------------------------------------------------------------<br>
 <br>
-Demo Video URL: <br>
+Demo Video URL: https://youtu.be/-E2J3hrBuoE?si=8F8D8xLK5wNYo8Bq <br>
 WOKWI Circuit Model: https://wokwi.com/projects/468191152739578881 <br>
 <br>
 How to Play: <br>
