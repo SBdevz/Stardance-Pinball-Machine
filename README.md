@@ -1,6 +1,9 @@
 # Stardance Pinball Machine
 An interactive, fun, space themed Pinball Machine where you score "planets" into stars! <br>
 <br>
+
+https://github.com/user-attachments/assets/788dfeb9-6665-4c7f-9b4d-72d302205229
+
 -------------------------------------------------------------------------------------------------------------------------------<br>
 <br>
 Demo Video URL: <br>
